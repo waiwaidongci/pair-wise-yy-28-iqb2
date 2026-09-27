@@ -21,6 +21,8 @@ python -m unittest discover -s tests -v
 
 检测按叙事顺序执行，与剪辑和拍摄顺序无关。调整方案必须由制片人或场记提出、由另一位审片人批准；批准后写入镜头状态并重新检查。也可以为确实需要保留的冲突写入豁免理由。锁定会再次检查场次，豁免之外的活跃冲突会阻止锁定，锁定后直接改状态会失败。
 
+服装、道具等单调元素发生可逆变化（修复、清洗、复原）时，可以走复位流程而不必豁免：登记元素、复位起点镜头、复位后数值、原因和依据，由审片人单独审核，同一元素最多同时存在一条待审核申请。批准后复位值写入起点镜头（已锁定镜头同样会被更新），原状态留档在复位记录中，该镜头成为新的叙事基准：它与前一镜头的比较按复位处理，后续镜头从复位值继续单调检查，普通回退仍会报冲突，受影响场次自动重新检查。
+
 ## 主要接口
 
 - `POST /api/users`、`POST /api/productions`
@@ -29,5 +31,6 @@ python -m unittest discover -s tests -v
 - `POST /api/shots/{id}/states`、`POST /api/scenes/{id}/check`
 - `POST /api/conflicts/{id}/plans`、`POST /api/plans/{id}/review`
 - `POST /api/conflicts/{id}/exemptions`
+- `POST /api/elements/{id}/resets`、`POST /api/resets/{id}/review`
 - `POST /api/shots/{id}/lock`
 - `GET /api/productions/{id}/continuity`
