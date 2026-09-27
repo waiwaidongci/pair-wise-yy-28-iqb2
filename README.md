@@ -19,7 +19,7 @@ python -m unittest discover -s tests -v
 - `monotonic`：使用 `numeric_value` 比较，数值不能下降，适合伤痕、污损或破坏程度。
 - `allowed`：只有预先登记的状态转移才能通过。
 
-检测按叙事顺序执行，与剪辑和拍摄顺序无关。调整方案必须由制片人或场记提出、由另一位审片人批准；批准后写入镜头状态并重新检查。也可以为确实需要保留的冲突写入豁免理由。锁定会再次检查场次，豁免之外的活跃冲突会阻止锁定，锁定后直接改状态会失败。
+检测按叙事顺序执行，与剪辑和拍摄顺序无关。调整方案必须由制片人或场记提出、由另一位审片人批准；批准后写入镜头状态并重新检查。也可以为确实需要保留的冲突写入豁免理由。服装或道具使用单调规则记录湿污、损坏等可逆变化时，可登记复位申请，写清元素、镜头、复位后状态/数值、原因和依据；审片人另行确认后，复位会成为新的叙事基准，原状态和数值仍保存在复位记录中。同一元素同时只能有一份待处理复位申请；复位通过后会重新检查整个项目，已锁定镜头也会通过该受控流程更新，普通直接回退仍会报冲突且不能绕过锁定。锁定会再次检查场次，豁免之外的活跃冲突会阻止锁定，锁定后直接改状态会失败。
 
 ## 主要接口
 
@@ -29,5 +29,6 @@ python -m unittest discover -s tests -v
 - `POST /api/shots/{id}/states`、`POST /api/scenes/{id}/check`
 - `POST /api/conflicts/{id}/plans`、`POST /api/plans/{id}/review`
 - `POST /api/conflicts/{id}/exemptions`
+- `POST /api/resets`、`POST /api/resets/{id}/review`
 - `POST /api/shots/{id}/lock`
 - `GET /api/productions/{id}/continuity`
